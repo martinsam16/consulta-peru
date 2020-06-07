@@ -50,7 +50,7 @@ class TipoCambio:
         :return: tipo de cambio solicitado
         """
         data = self.get_tipo_cambio(anio=anio, mes=mes)
-        return [e for e in data if e['dia'] == dia][0]
+        return [e for e in data if e['dia'] >= dia][0]
 
     def _mapear(self, jquery, indice, table):
         models = list()

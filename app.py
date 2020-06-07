@@ -30,10 +30,15 @@ def get_tipo_cambio_actual():
     return cambio.get_tipo_cambio_actual()
 
 
-@app.route('/cambio/periodo/<anio>/<mes>', methods=['GET'])
+@app.route('/cambio/periodo/<int:anio>/<int:mes>', methods=['GET'])
 @cross_origin()
 def get_tipo_cambio_periodo(anio, mes):
-    return json.dumps(cambio.get_tipo_cambio(anio, mes))
+    return json.dumps(cambio.get_tipo_cambio(anio, mes))\
+
+@app.route('/cambio/dia/<int:anio>/<int:mes>/<int:dia>', methods=['GET'])
+@cross_origin()
+def get_tipo_cambio_periodo_dia(anio, mes,dia):
+    return json.dumps(cambio.get_tipo_cambio_dia(anio, mes,dia))
 
 
 now = datetime.datetime.now()
@@ -53,7 +58,7 @@ def get_bvl_empresa(nemonico, fecha_inicio, fecha_fin):
 @app.route('/bvl/resumen_mercado', methods=['GET'])
 @cross_origin()
 def get_bvl_resumen_mercado():
-    return json.dumps(bvl.get_resumen_mercado())
+    return json.dumps(bvl.get_resumen_mercado(), ensure_ascii=False)
 
 
 @app.route('/bvl/empresas', methods=['GET'])
