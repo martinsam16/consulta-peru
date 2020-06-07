@@ -41,6 +41,14 @@ def get_bvl_empresa(nemonico, fecha_inicio, fecha_fin):
     # ALICORC1, AAPL, NVDA
     return json.dumps(bvl.get_historico(nemonico, fecha_inicio, fecha_fin))
 
+@app.route('/bvl/resumen_mercado')
+def get_bvl_resumen_mercado():
+    return json.dumps(bvl.get_resumen_mercado())
+
+@app.route('/bvl/empresas')
+def get_bvl_empresas():
+    return json.dumps(bvl.get_empresas(),ensure_ascii=False)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
