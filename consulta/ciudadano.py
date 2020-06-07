@@ -15,8 +15,13 @@ class Ciudadano:
             'strDni': dni
         }).json()
         datos: dict = json_res['DatosPerson'][0]
-        datos['Sexo'] = 'Masculino' if datos['Sexo'] == '2' else 'Femenino'
-        datos['UltimoDigito'] = self._get_code(datos['DNI'])
+        datos['apellido_paterno'] = datos.pop('ApellidoPaterno')
+        datos['apellido_materno'] = datos.pop('ApellidoMaterno')
+        datos['nombres'] = datos.pop('Nombres')
+        datos['dni'] = datos.pop('DNI')
+        datos['sexo'] = 'M' if datos.pop('Sexo') == '2' else 'F'
+        datos['ultimo_digito'] = self._get_code(datos['dni'])
+        datos['fecha_nacimiento'] = datos.pop('FechaNacimiento')
         return datos
 
     def _get_code(self, dni: str):
