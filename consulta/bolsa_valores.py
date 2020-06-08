@@ -8,8 +8,7 @@ class BolsaValoresLima:
         self.__URL_COTIZACION = 'https://www.bvl.com.pe/jsp/cotizacion.jsp'
         self.__URL_RESUMEN_MERCADO = 'https://www.bvl.com.pe/includes/resumen_mercado.dat'
         self.__URL_EMPRESAS = 'https://www.bvl.com.pe/includes/empresas_todas.dat'
-        # TODO
-        # https://www.bvl.com.pe/includes/cotizaciones_todas.dat
+        self.__URL_COTIZACIONES_TODAS = 'https://www.bvl.com.pe/includes/cotizaciones_todas.dat'
 
     def get_empresas(self):
         HTML = requests.get(url=self.__URL_EMPRESAS, verify=False).text
@@ -18,6 +17,13 @@ class BolsaValoresLima:
 
         pq(tabla).children().children().children().map(lambda i, e: self.__mapear_empresas(i, e, lista_empresas))
         return lista_empresas
+
+    def get_cotizaciones_todas(self):
+        HTML = requests.get(url=self.__URL_COTIZACIONES_TODAS, verify=False).text
+        filas = pq(HTML).find('table').children()
+        lista_datos = list()
+        filas.map(lambda i, e: self.__mapear_cotizaciones_todas(i, e, lista_datos))
+        return lista_datos
 
     def get_resumen_mercado(self):
         HTML = requests.get(url=self.__URL_RESUMEN_MERCADO, verify=False).text
@@ -52,6 +58,32 @@ class BolsaValoresLima:
             'empresa': pq(elemento).text(),
             'informacion': pq(elemento).attr('href'),
         })
+
+    def __mapear_cotizaciones_todas(self, indice, elemento, lista_datos):
+        if indice > 1:
+            fila = pq(elemento).children()
+            temporal = list()
+            fila.map(lambda i, e: temporal.append(pq(e).eq(0).text()))
+            i = 1
+            while i < len(temporal):
+                lista_datos.append({
+                    'empresa': temporal[i].strip(),
+                    'nemonico': temporal[i + 1].strip(),
+                    'sector': temporal[i + 2].strip(),
+                    'segm': temporal[i + 3].strip(),
+                    'moneda': temporal[i + 4].strip(),
+                    'anterior': temporal[i + 5].strip(),
+                    'fecha_anterior': temporal[i + 6].strip(),
+                    'apertura': temporal[i + 7].strip(),
+                    'ultima': temporal[i + 8].strip(),
+                    'porcentaje_variacion': temporal[i + 9].strip(),
+                    'compra': temporal[i + 10].strip(),
+                    'venta': temporal[i + 11].strip(),
+                    'acciones': temporal[i + 12].strip(),
+                    'operaciones': temporal[i + 13].strip(),
+                    'monto_negativo': temporal[i + 14].strip(),
+                })
+                i += 15
 
     def __mapear_resumen_mercado(self, indice, elemento, lista_datos):
         if indice > 1:
@@ -100,4 +132,4 @@ if __name__ == '__main__':
     # print(datos)
 
     # bvl.get_resumen_mercado()
-    bvl.get_empresas()
+    bvl.get_cotizaciones_todas()

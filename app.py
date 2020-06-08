@@ -30,7 +30,7 @@ def get_ciudadano(dni):
 @app.route('/ruc/<ruc>', methods=['GET'])
 @cross_origin()
 def get_empresa(ruc):
-    return json.dumps(empresa.get_datos(ruc),ensure_ascii=False)
+    return json.dumps(empresa.get_datos(ruc), ensure_ascii=False)
 
 
 @app.route('/cambio', methods=['GET'])
@@ -75,6 +75,12 @@ def get_bvl_resumen_mercado():
 @cross_origin()
 def get_bvl_empresas():
     return json.dumps(bvl.get_empresas(), ensure_ascii=False)
+
+
+@app.route('/bvl/cotizaciones', methods=['GET'])
+@cross_origin()
+def get_cotizaciones():
+    return json.dumps(bvl.get_cotizaciones_todas(), ensure_ascii=False)
 
 
 if __name__ == '__main__':

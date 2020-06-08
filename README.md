@@ -27,7 +27,9 @@ docker run -p 5000:5000 -dit --name="consulta-peru" "consulta-peru"
 ## Endpoints
 
 ### Ciudadano
-Obtiene la información de una persona a partir de su DNI
+Obtiene la información de una persona natural a partir de su DNI
+
+> Puedes sacar su ruc por: 10{dni}{ultimo_digito} y realizar la consulta al endpoint de empresa.
 
 | URI   | Metodo|Ejemplo |
 |:-------|:------------|:------------|
@@ -51,7 +53,7 @@ Obtiene la información de una persona jurídica o empresa a partir de su RUC
 
 | URI   | Metodo|Ejemplo |
 |:-------|:------------|:------------|
-|/ruc/{numero_ruc}| GET|/dni/20305354563|
+|/ruc/{numero_ruc}| GET|/ruc/20305354563|
 
 #### Respuesta
 
@@ -121,13 +123,14 @@ Obtiene el tipo de cambio desde la SUNAT
 `````
 
 ### Bolsa de Valores de Lima
-Obtiene la información la bvl
+Obtiene la información de la bvl
 
-*formato fecha = YYYYMMDD*
+> *formato fecha = YYYYMMDD*
 
 | URI   | Metodo|Ejemplo |Descripción|
 |:-------|:------------|:------------|:------------|
 |/bvl/resumen_mercado| GET|/bvl/resumen_mercado|Obtiene el resumen del mercado|
+|/bvl/cotizaciones| GET|/bvl/cotizaciones|Obtiene todas las cotizaciones|
 |/bvl/empresas| GET|/bvl/empresas|Obtiene las empresas que cotizan en bolsa|
 |/bvl/{nemonico}| GET|/bvl/NVDA|Obtiene todo el historial en bolsa de un nemonico solicitado|
 |/bvl/{nemonico}/{fecha_inicio}| GET|/bvl/NVDA/20200603|Obtiene el historial de un nemonico en bolsa desde la fecha solicitada hasta ahora|
@@ -161,6 +164,21 @@ Obtiene la información la bvl
   {"nombre": "colocación primaria", "pen": "0.00", "usd": "0.00", "numero_operaciones": "0"}, 
   {"nombre": "total mercado", "pen": "130,415,658.96", "usd": "38,116,515.84", "numero_operaciones": "684"}
  ]
+`````
+
+
+
+* /bvl/cotizaciones
+
+`````
+[
+    {"empresa": "Apple Inc.", "nemonico": "AAPL", "sector": "", "segm": "RV3", "moneda": "US$", "anterior": "331.50", "fecha_anterior": "05/06/2020", "apertura": "", "ultima": "", "porcentaje_variacion": "", "compra": "", "venta": "", "acciones": "", "operaciones": "", "monto_negativo": ""}, 
+    {"empresa": "Barrick Gold Corporation", "nemonico": "ABX", "sector": "", "segm": "RV3", "moneda": "US$", "anterior": "23.22", "fecha_anterior": "05/06/2020", "apertura": "23.30", "ultima": "23.30", "porcentaje_variacion": "0.34", "compra": "", "venta": "", "acciones": "350", "operaciones": "1", "monto_negativo": "8,155"},
+    {"empresa": "iShares MSCI ACWI ETF", "nemonico": "ACWI", "sector": "", "segm": "RV3", "moneda": "US$", "anterior": "76.30", "fecha_anterior": "05/06/2020", "apertura": "76.50", "ultima": "76.50", "porcentaje_variacion": "0.26", "compra": "", "venta": "", "acciones": "530", "operaciones": "1", "monto_negativo": "40,545"}, 
+    {"empresa": "Adm. del Comercio", "nemonico": "ADCOMEC1", "sector": "DIVERSAS", "segm": "RV2", "moneda": "S/", "anterior": "", "fecha_anterior": "", "apertura": "", "ultima": "", "porcentaje_variacion": "", "compra": "", "venta": "", "acciones": "", "operaciones": "", "monto_negativo": ""},
+    {"empresa": "iSh Core US Aggregate Bond ETF", "nemonico": "AGG", "sector": "", "segm": "RV3", "moneda": "US$", "anterior": "116.42", "fecha_anterior": "04/06/2020", "apertura": "", "ultima": "", "porcentaje_variacion": "", "compra": "", "venta": "", "acciones": "", "operaciones": "", "monto_negativo": ""},
+    ...
+]
 `````
 
 * /bvl/empresas
