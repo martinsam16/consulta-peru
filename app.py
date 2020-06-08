@@ -7,6 +7,7 @@ from flask_cors import cross_origin
 
 from consulta.bolsa_valores import BolsaValoresLima
 from consulta.ciudadano import Ciudadano
+from consulta.empresa import Empresa
 from consulta.tipo_cambio import TipoCambio
 
 app = Flask(__name__)
@@ -14,6 +15,8 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 ciudadano = Ciudadano()
+empresa = Empresa()
+
 cambio = TipoCambio()
 bvl = BolsaValoresLima()
 
@@ -22,6 +25,12 @@ bvl = BolsaValoresLima()
 @cross_origin()
 def get_ciudadano(dni):
     return ciudadano.get_essalud_informacion(dni=dni)
+
+
+@app.route('/ruc/<ruc>', methods=['GET'])
+@cross_origin()
+def get_empresa(ruc):
+    return json.dumps(empresa.get_datos(ruc),ensure_ascii=False)
 
 
 @app.route('/cambio', methods=['GET'])
@@ -33,12 +42,13 @@ def get_tipo_cambio_actual():
 @app.route('/cambio/periodo/<int:anio>/<int:mes>', methods=['GET'])
 @cross_origin()
 def get_tipo_cambio_periodo(anio, mes):
-    return json.dumps(cambio.get_tipo_cambio(anio, mes))\
+    return json.dumps(cambio.get_tipo_cambio(anio, mes))
+
 
 @app.route('/cambio/dia/<int:anio>/<int:mes>/<int:dia>', methods=['GET'])
 @cross_origin()
-def get_tipo_cambio_periodo_dia(anio, mes,dia):
-    return json.dumps(cambio.get_tipo_cambio_dia(anio, mes,dia))
+def get_tipo_cambio_periodo_dia(anio, mes, dia):
+    return json.dumps(cambio.get_tipo_cambio_dia(anio, mes, dia))
 
 
 now = datetime.datetime.now()

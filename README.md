@@ -46,6 +46,43 @@ Obtiene la información de una persona a partir de su DNI
 }
 `````
 
+### Empresa
+Obtiene la información de una persona jurídica o empresa a partir de su RUC
+
+| URI   | Metodo|Ejemplo |
+|:-------|:------------|:------------|
+|/ruc/{numero_ruc}| GET|/dni/20305354563|
+
+#### Respuesta
+
+`````json
+{
+  "numeroruc": "20305354563", 
+  "nombre_ó_razonsocial": "FARMACIAS PERUANAS S.A.", 
+  "tipo_de_contribuyente": "SOCIEDAD ANONIMA", 
+  "profesion_u_oficio": "-", 
+  "nombre_comercial": "BOTICAS FASA, MIFARMA, JUSTO", 
+  "condicion_del_contribuyente": "HABIDO", 
+  "estado_del_contribuyente": "BAJA DEFINITIVA", 
+  "fecha_de_inscripcion": "15/05/1996", 
+  "fecha_de_inicio_de_actividades": "01/05/1996", 
+  "departamento": "LIMA", 
+  "provincia": "LIMA", 
+  "distrito": "LA VICTORIA", 
+  "direccion": "CAL. VICTOR ALZAMORA NRO. 147 URB. SANTA CATALINA", 
+  "telefono": "-", 
+  "fax": "-", 
+  "actividad_de_comercio_exterior": "SIN ACTIVIDAD", 
+  "principal-_ciiu": "VTA. MIN. PROD. FARMAC. Y ART. TOCADOR.", 
+  "secundario_1-_ciiu": "-", 
+  "secundario_2-_ciiu": "-", 
+  "afecto_nuevo_rus": "NO", 
+  "buen_contribuyente": "-", 
+  "agente_de_retencion": "NO, Excluido del Régimen de Agentes de Retención de IGV a partir del 01/09/2016", 
+  "agente_de_percepcion_vtaint": "-", 
+  "agente_de_percepcion_comliq": "-"
+}
+`````
 
 ### Tipo de Cambio
 Obtiene el tipo de cambio desde la SUNAT
@@ -127,7 +164,7 @@ Obtiene la información la bvl
 `````
 
 * /bvl/empresas
-`````json
+`````
 [
   {"empresa": "A. JAIME ROJAS REPRESENTACIONES GENERALES S.A.", "informacion": "/inf_corporativa71050_SkFJTUUxQkMxQQ.html"}, 
   {"empresa": "A.F.P. INTEGRA S.A.", "informacion": "/inf_corporativa10400_SU5URUdSQzE.html"}, 
@@ -143,7 +180,7 @@ Obtiene la información la bvl
 `````
 
 * /bvl/{nemonico} -> /bvl/NVDA
-`````json
+`````
 [
   {"fecha": "05/06/2020", "apertura": "353.90", "cierre": "353.90", "maxima": "353.90", "minima": "353.90", "promedio": "353.90", "cantidad_negociada": "85.00", "monto_negociado": "30,081.50", "fecha_anterior": "14/05/2020", "cierre_anterior": "314.06"}, 
   {"fecha": "14/05/2020", "apertura": "314.06", "cierre": "314.06", "maxima": "314.06", "minima": "314.06", "promedio": "314.06", "cantidad_negociada": "18.00", "monto_negociado": "5,653.08", "fecha_anterior": "13/05/2020", "cierre_anterior": "313.10"}, 
