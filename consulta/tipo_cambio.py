@@ -68,24 +68,3 @@ class TipoCambio:
                 i = i + 2
         if len(table) - 1 == indice:
             return models
-
-
-if __name__ == '__main__':
-    print('-' * 10)
-    print('SUNAT')
-    print('-' * 10)
-    sunat = TipoCambio()
-    actual = sunat.get_tipo_cambio_actual()
-    print('actual', actual)
-    print('*' * 10)
-    anio = 2020
-    mes = 6
-    print(f'año: {anio}, mes: {mes}')
-    data = sunat.get_tipo_cambio(anio=anio, mes=mes)
-    for e in data:
-        print(e)
-
-    print('*' * 10)
-    dia = 5
-    print(f'año: {anio}, mes: {mes}, dia: {dia}')
-    print(sunat.get_tipo_cambio_dia(anio, mes, dia))

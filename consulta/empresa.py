@@ -46,8 +46,3 @@ class Empresa:
             if indice != len(cabeceras) - 1:
                 json_datos[cabecera.strip().lower().replace(' ', '_')] = valores[indice].strip()
         return json_datos
-
-
-if __name__ == '__main__':
-    empresa = Empresa()
-    empresa.get_datos('20305354563')

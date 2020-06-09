@@ -21,6 +21,12 @@ cambio = TipoCambio()
 bvl = BolsaValoresLima()
 
 
+@app.route('/', methods=['GET'])
+@cross_origin()
+def index():
+    return 'consulta-peru corriendo :D'
+
+
 @app.route('/dni/<dni>', methods=['GET'])
 @cross_origin()
 def get_ciudadano(dni):

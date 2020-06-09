@@ -42,8 +42,3 @@ class Ciudadano:
             elif digito == 11:
                 digito = 1
             return digito
-
-
-if __name__ == '__main__':
-    ciudadano = Ciudadano()
-    print(ciudadano.get_essalud_informacion(dni=72720455))

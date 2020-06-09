@@ -1,9 +1,16 @@
 # Consulta Perú
+
+![API version](https://img.shields.io/badge/api%20version-0.0.1-orange)
+![Python version supported](https://img.shields.io/badge/python-3.x-blue)
+[![Docker image size](https://img.shields.io/docker/image-size/malditoidealismo/consulta-peru)](https://hub.docker.com/r/malditoidealismo/consulta-peru)
+
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=MartinSamanArata2018_consulta-peru&metric=alert_status)](https://sonarcloud.io/dashboard?id=MartinSamanArata2018_consulta-peru)
+![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
+
 API centralizada y open-source de consultas de datos del Perú
 
 ## Correr
 
-Clona o descarga el repo y ..
 
 ### Python
 `````sh
@@ -23,6 +30,11 @@ docker build -t consulta-peru .
 docker run -p 5000:5000 -dit --name="consulta-peru" "consulta-peru"
 `````
 
+ó
+
+`````docker
+docker run -p 5000:5000 -dit malditoidealismo/consulta-peru:latest
+`````
 
 ## Endpoints
 

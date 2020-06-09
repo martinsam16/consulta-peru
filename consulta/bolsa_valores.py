@@ -119,17 +119,3 @@ class BolsaValoresLima:
                 })
             except Exception:
                 pass
-
-
-if __name__ == '__main__':
-    # import datetime
-
-    bvl = BolsaValoresLima()
-    # now = datetime.datetime.now()
-    # fecha_actual = '{:02d}'.format(now.year) + '{:02d}'.format(now.month) + '{:02d}'.format(now.day)
-    # datos = bvl.get_historico('ALICORC1', '', fecha_actual)
-    # print(len(datos))
-    # print(datos)
-
-    # bvl.get_resumen_mercado()
-    bvl.get_cotizaciones_todas()
