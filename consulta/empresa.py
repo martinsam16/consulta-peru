@@ -44,5 +44,6 @@ class Empresa:
         valores = lineas[1].split('|')
         for indice, cabecera in enumerate(cabeceras):
             if indice != len(cabeceras) - 1:
-                json_datos[cabecera.strip().lower().replace(' ', '_')] = valores[indice].strip()
+                json_datos[cabecera.strip().lower().replace('-', '').replace('ó', '').replace(' ', '_')] = valores[
+                    indice].strip()
         return json_datos
