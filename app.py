@@ -30,10 +30,16 @@ def index():
     return 'consulta-peru corriendo :D'
 
 
-@app.route('/dni/<dni>', methods=['GET'])
+@app.route('/dni_essalud/<dni>', methods=['GET'])
 @cross_origin()
-def get_ciudadano(dni):
+def get_ciudadano_essalud(dni):
     return ciudadano.get_essalud_informacion(dni=dni)
+
+
+@app.route('/dni_sunat/<dni>', methods=['GET'])
+@cross_origin()
+def get_ciudadano_sunat(dni):
+    return ciudadano.get_sunat_informacion(dni=dni)
 
 
 @app.route('/ruc/<ruc>', methods=['GET'])
