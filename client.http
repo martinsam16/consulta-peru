@@ -1,0 +1,48 @@
+GET {{url}}
+
+# Ciudadano ------------------------------------------------------
+###
+GET {{url}}/dni_sunat/72720455
+
+###
+GET {{url}}/dni_essalud/72720455
+
+
+# Empresa ---------------------------------------------------------
+###
+GET {{url}}/ruc/20305354563
+
+
+# Tipo de Cambio -------------------------------------------------
+###
+GET {{url}}/cambio
+
+###
+GET {{url}}/cambio/periodo/2020/6
+
+###
+GET {{url}}/cambio/dia/2020/2/4
+
+
+# Bolsa de Valores de Lima ----------------------------------------
+###
+GET {{url}}/bvl/resumen_mercado
+
+###
+GET {{url}}/bvl/cotizaciones
+
+###
+GET {{url}}/bvl/empresas
+
+###
+GET {{url}}/bvl/NVDA
+
+###
+GET {{url}}/bvl/NVDA/20200603
+
+###
+GET {{url}}/bvl/NVDA/20200501/20200603
+
+# Comisiones y Primas de Seguro del SPP ------------------------------
+###
+GET {{url}}/spp

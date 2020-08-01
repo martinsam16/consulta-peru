@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from flask import Flask
 from flask import json
@@ -15,6 +16,7 @@ from consulta.tipo_cambio import TipoCambio
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+port = int(os.environ.get("PORT", 5000))
 
 ciudadano = Ciudadano()
 empresa = Empresa()
@@ -27,13 +29,22 @@ spp = SppComisionesPrimas()
 @app.route('/', methods=['GET'])
 @cross_origin()
 def index():
-    return 'consulta-peru corriendo :D'
+    return {
+        'estado': 'corriendo :D',
+        'repo': 'https://github.com/MartinSamanArata2018/consulta-peru'
+    }
 
 
-@app.route('/dni/<dni>', methods=['GET'])
+@app.route('/dni_essalud/<dni>', methods=['GET'])
 @cross_origin()
-def get_ciudadano(dni):
+def get_ciudadano_essalud(dni):
     return ciudadano.get_essalud_informacion(dni=dni)
+
+
+@app.route('/dni_sunat/<dni>', methods=['GET'])
+@cross_origin()
+def get_ciudadano_sunat(dni):
+    return ciudadano.get_sunat_informacion(dni=dni)
 
 
 @app.route('/ruc/<ruc>', methods=['GET'])
@@ -61,6 +72,7 @@ def get_tipo_cambio_periodo_dia(anio, mes, dia):
                     content_type="application/json; charset=utf-8")
 
 
+# ToDo :bug:
 now = datetime.datetime.now()
 # formato de fechas para la bvl
 fecha_actual = '{:02d}'.format(now.year) + '{:02d}'.format(now.month) + '{:02d}'.format(now.day)
@@ -100,4 +112,4 @@ def get_comisiones_primas():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+    app.run(host='0.0.0.0', port=port, debug=False, threaded=True)

@@ -7,10 +7,22 @@
 ![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
 API centralizada y open-source de consultas de datos del Perú
+## Deploy
+### Heroku
+`````sh
+heroku container:login
+`````
+`````sh
+heroku create yourawesomeapp
+`````
+`````sh
+heroku container:push web --app yourawesomeapp
+`````
+`````sh
+heroku container:release web --app yourawesomeapp
+`````
 
 ## Correr
-
-
 ### Python
 `````sh
 pip install -r requirements.txt
@@ -47,20 +59,24 @@ Obtiene la información de una persona natural a partir de su DNI
 
 > Puedes sacar su ruc por: 10{dni}{ultimo_digito} y realizar la consulta al endpoint de empresa.
 
-| URI   | Metodo|Ejemplo |
-|:-------|:------------|:------------|
-|/dni/{numero_dni}| GET|/dni/72720455|
+| URI   | Metodo|Ejemplo | |
+|:-------|:------------|:------------|:------------|
+|/dni_sunat/{numero_dni}| GET|/dni_sunat/72720455|🟢|
+|/dni_essalud/{numero_dni}| GET|/dni_essalud/72720455| 🔴|
+
 
 #### Respuesta
 `````json
 {
-    "apellido_paterno": "SAMAN",
-    "apellido_materno": "ARATA",
-    "nombres"         : "MARTIN ALEXIS",
-    "dni"             : "72720455",
-    "fecha_nacimiento": "16/10/2000",
-    "ultimo_digito"   : 1,
-    "sexo"            : "M"
+  "apellido_materno": "ARATA",
+  "apellido_paterno": "SAMAN",
+  "dni": "72720455",
+  "domicilio": "URB SANTA ROSA DE HUALCARA MZ D LT 23 SAN VICENTE DE CAÑETE - CAÑETE - LIMA",
+  "fecha_nacimiento": "16/10/2000",
+  "nombres": "MARTIN ALEXIS",
+  "sexo": "-",
+  "telefono": "-",
+  "ultimo_digito": 1
 }
 `````
 
@@ -872,3 +888,5 @@ Obtiene informacion de la Superintendencia de Banca, seguros y AFP
     }
 ]
 `````
+
+> Nota: Crear issues en caso haya errores o los endpoints a los que se conecta hayan dejado de funcionar :D
