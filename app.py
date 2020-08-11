@@ -4,6 +4,7 @@ import os
 from flask import Flask
 from flask import json
 from flask import Response
+from flask import request
 from flask_cors import CORS
 from flask_cors import cross_origin
 
@@ -12,6 +13,7 @@ from consulta.ciudadano import Ciudadano
 from consulta.empresa import Empresa
 from consulta.spp_comisiones_primas import SppComisionesPrimas
 from consulta.tipo_cambio import TipoCambio
+from consulta.sunarp import Sunarp
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -24,6 +26,7 @@ empresa = Empresa()
 cambio = TipoCambio()
 bvl = BolsaValoresLima()
 spp = SppComisionesPrimas()
+sunarp = Sunarp()
 
 
 @app.route('/', methods=['GET'])
@@ -40,6 +43,10 @@ def index():
 def get_ciudadano_essalud(dni):
     return ciudadano.get_essalud_informacion(dni=dni)
 
+@app.route('/dni_reniec/<dni>', methods=['GET'])
+@cross_origin()
+def get_ciudadano_reniec(dni):
+    return ciudadano.get_reniec_informacion(dni=dni)
 
 @app.route('/dni_sunat/<dni>', methods=['GET'])
 @cross_origin()
@@ -110,6 +117,16 @@ def get_cotizaciones():
 def get_comisiones_primas():
     return Response(json.dumps(spp.get_data_actual()), content_type="application/json; charset=utf-8")
 
+
+@app.route('/sunarp/titulo', methods=['GET'])
+@cross_origin()
+def get_tramite_titulo():
+    json: dict = request.json
+    json['codigoZona'] = json.pop('zona')
+    json['codigoOficina'] = json.pop('oficina')
+    json['anioTitulo'] = json.pop('year')
+    json['numeroTitulo'] = json.pop('titulo')
+    return sunarp.get_tramite_titulo(json)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=False, threaded=True)

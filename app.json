@@ -1,0 +1,15 @@
+{
+  "name": "consulta-peru",
+  "description": "API centralizada y open-source de consultas de datos del Perú",
+  "repository": "https://github.com/MartinSamanArata2018/consulta-peru",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": [
+    "python",
+    "consulta",
+    "peru",
+    "dni",
+    "ruc",
+    "cambio",
+    "bvl"
+  ]
+}

@@ -5,8 +5,10 @@ GET {{url}}
 GET {{url}}/dni_sunat/72720455
 
 ###
-GET {{url}}/dni_essalud/72720455
+GET {{url}}/dni_reniec/72720455
 
+###
+GET {{url}}/dni_essalud/72720455
 
 # Empresa ---------------------------------------------------------
 ###
@@ -46,3 +48,15 @@ GET {{url}}/bvl/NVDA/20200501/20200603
 # Comisiones y Primas de Seguro del SPP ------------------------------
 ###
 GET {{url}}/spp
+
+# SUNARP -------------------------------------------------------------
+###
+GET {{url}}/sunarp/titulo
+Content-Type: application/json
+
+{
+   "zona":"01",
+   "oficina":"01",
+   "year":"2018",
+   "titulo":"02650055"
+}

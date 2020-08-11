@@ -7,20 +7,10 @@
 ![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)
 
 API centralizada y open-source de consultas de datos del Perú
+
 ## Deploy
 ### Heroku
-`````sh
-heroku container:login
-`````
-`````sh
-heroku create yourawesomeapp
-`````
-`````sh
-heroku container:push web --app yourawesomeapp
-`````
-`````sh
-heroku container:release web --app yourawesomeapp
-`````
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Correr
 ### Python
@@ -53,6 +43,9 @@ docker run -p 5000:5000 -dit malditoidealismo/consulta-peru:latest
 3. [Tipo de Cambio](#tipo-de-cambio)
 4. [Bolsa de Valores de Lima](#bolsa-de-valores-de-lima)
 5. [Comisiones y Primas de Seguro del SPP](#comisiones-y-primas-de-seguro-del-spp)
+5. [SUNARP](#SUNARP)
+
+> Nota: Crear issues en caso haya errores o los endpoints a los que se conecta o hayan dejado de funcionar :D
 
 ## Ciudadano
 Obtiene la información de una persona natural a partir de su DNI
@@ -62,7 +55,8 @@ Obtiene la información de una persona natural a partir de su DNI
 | URI   | Metodo|Ejemplo | |
 |:-------|:------------|:------------|:------------|
 |/dni_sunat/{numero_dni}| GET|/dni_sunat/72720455|🟢|
-|/dni_essalud/{numero_dni}| GET|/dni_essalud/72720455| 🔴|
+|/dni_reniec/{numero_dni}| GET|/dni_reniec/72720455|🟢|
+|/dni_essalud/{numero_dni}| GET|/dni_essalud/72720455|🔴|
 
 
 #### Respuesta
@@ -888,5 +882,65 @@ Obtiene informacion de la Superintendencia de Banca, seguros y AFP
     }
 ]
 `````
+## SUNARP
 
-> Nota: Crear issues en caso haya errores o los endpoints a los que se conecta hayan dejado de funcionar :D
+| URI   |Metodo|Ejemplo |Descripción|
+|:-------|:------------|:------------|:------------|
+|/sunarp/titulo| GET|/sunarp/titulo|Obtiene el trámite por titulo|
+
+* /sunarp/titulo
+### Envio
+`````json
+{
+   "zona":"01",
+   "oficina":"01",
+   "year":"2018",
+   "titulo":"02650055"
+}
+`````
+### Respuesta
+`````json
+{
+  "codigoRespuesta": "0000",
+  "descripcionRespuesta": "Se muestran los resultados correctamente.",
+  "lstPagos": [
+    {
+      "codSedePago": null,
+      "desSedePago": "LIMA",
+      "fechaRecibo": "23/11/2018 15:51:02",
+      "montoRecibo": "    20.00",
+      "numeroRecibo": "372-00054221"
+    }
+  ],
+  "lstParticipantes": [
+    {
+      "codTipoParticipante": "1",
+      "desTipoParticipante": "PN",
+      "nombresRazonSocial": "MATSUFUJI FUKUNAGA OSCAR LEOPOLDO"
+    }
+  ],
+  "lstTitulo": [
+    {
+      "actoRegistral": "SUCESION INTESTADA DEFINITIVA",
+      "anioTitulo": "2018",
+      "areaRegistral": "23000",
+      "codEstadoActual": "120301",
+      "documentoPresentante": "DNI-10181827",
+      "estadoActual": "INSCRITO",
+      "fechaHoraPresentacion": "23/11/2018 15:51:02",
+      "fechaVencimiento": "15/01/2019",
+      "indiPror": "0",
+      "indiSusp": "0",
+      "lugarPresentacion": "LIMA / MIRAFLORES",
+      "montoDevo": "",
+      "nombrePresentante": "GUTIERREZ ADRIANZEN, LUIS BENJAMIN  [ALVAREZ QUISPE, ALBERTO FELIX]",
+      "numeroTitulo": "02650055",
+      "oficina": "01",
+      "partidaMatriz": null,
+      "tipoRegistro": "PERSONAS NATURALES",
+      "zona": "01"
+    }
+  ]
+}
+`````
+
