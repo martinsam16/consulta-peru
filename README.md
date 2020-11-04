@@ -56,7 +56,7 @@ Obtiene la información de una persona natural a partir de su DNI
 |:-------|:------------|:------------|:------------|
 |/dni_sunat/{numero_dni}| GET|/dni_sunat/72720455|🟢|
 |/dni_reniec/{numero_dni}| GET|/dni_reniec/72720455|🟢|
-|/dni_essalud/{numero_dni}| GET|/dni_essalud/72720455|🔴|
+|/dni_essalud/{numero_dni}| GET|/dni_essalud/72720455|🟢|
 
 
 #### Respuesta
