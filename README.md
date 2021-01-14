@@ -65,7 +65,7 @@ Obtiene la información de una persona natural a partir de su DNI
   "apellido_materno": "ARATA",
   "apellido_paterno": "SAMAN",
   "dni": "72720455",
-  "domicilio": "URB SANTA ROSA DE HUALCARA MZ D LT 23 SAN VICENTE DE CAÑETE - CAÑETE - LIMA",
+  "domicilio": "XXX YYY ZZZ",
   "fecha_nacimiento": "16/10/2000",
   "nombres": "MARTIN ALEXIS",
   "sexo": "-",
